@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="progetto.css">
+    <title>PROGETTO</title>
+  </head>
+  <body id="pagina-items">
+    <div class="container">
+    <h1 class="text-primary">GestioneMagazzini</h1>
+    <h2>Gestione ristoccaggio magazzino</h2>
+
+      <form>
+        <div class="form-group has-left-feedback has-right-feedback shadow-sm">
+          <span class="fa fa-search form-left-feedback"></span>
+          <input type="text" class="form-control" id="itemsearch" placeholder="Di cosa hai bisogno oggi?">
+          <button type="button" class="btn btn-primary btn-sm btn-search form-right-feedback" id="buttonsearch">cerca</button>
+        </div>
+      </form>
+
+    <h4>Risultati</h4>
+    
+    <div id="progetto-items-loading" class="card bg-light">
+      <div class="card-body">
+        <h5 class="card-title">caricamento</h5>
+        <div class="card-text">
+
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div id="progetto-items-container"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+    (($) => {
+      const itemCard = ({ id, name, description }) => {
+        return `
+          <div class="card">
+            <div class="card-body">
+              <div class="card-text">
+
+                <div class="row">
+                  <div class="col-sm">
+                    <h6>${name}</h6>
+                    ${description}
+                  </div>
+                  <div class="col-sm text-right align-self-center">
+                    <a class="btn btn-primary btn-cta" href="stores.php?item=${id}" role="button">${name} CTA</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          `;
+      };
+
+      const emptyCard = () => {
+        return `
+          <div class="card text-white bg-secondary">
+            <div class="card-body">
+              <h6 class="card-title">Nessun risultato</h6>
+              <p class="card-text">Effttua una ricerca diversa</p>
+            </div>
+          </div>
+          `;
+      };
+
+      const fetchItems = (q) => {
+        fetch(`items.json?q=${q}`).then((response) => {
+          return response.json();
+        }).then((items) => {
+          items = items.filter(item => {
+            const [ name, description, query ] = [ item.name, item.description, q ].map(val => val.toLowerCase());
+            return (name.includes(query) || description.includes(query));
+          }).sort(function (a, b) {
+            return a.name > b.name;
+          });
+          const solvedItems = (items.length === 0) ? emptyCard() : items.map(item => itemCard(item)).join('');
+          $('#progetto-items-container').html(solvedItems);
+          $('#progetto-items-loading').hide();
+
+          // console.log(items);
+        });
+      }
+      
+      $(document).on('click', '#buttonsearch', (e) => {
+        fetchItems($('#itemsearch').val());
+      });
+
+      $(function() {
+        fetchItems('');
+      });
+    })(jQuery);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>MINI3.JS</title>
+	</head>
+	<body>
+		<h1>MINI3.JS</h1>
+		<div>input</div>
+		<pre id="input"></pre>
+		<div>output</div>
+		<pre id="output"></pre>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		<script type="text/babel">
+
+		const intersezione = coppia => {
+			const [ primo, secondo ] = coppia;
+			return primo.filter(value => -1 !== secondo.indexOf(value)).filter((elemento, indice, doppioni) => (doppioni.indexOf(elemento) === indice));
+		};
+
+		const input = [[1, 5, 8, 5, 4, 9], [2, 5, 9, 0]];
+
+		const output = intersezione( input );
+
+		document.getElementById('input').innerHTML = JSON.stringify(input);
+		document.getElementById('output').innerHTML = JSON.stringify(output);
+
+		</script>
+	</body>
+</html>

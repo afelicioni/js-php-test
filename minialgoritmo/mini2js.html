@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>MINI2.JS</title>
+	</head>
+	<body>
+		<h1>MINI2.JS</h1>
+		<div>input</div>
+		<pre id="input"></pre>
+		<div>output</div>
+		<pre id="output"></pre>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		<script type="text/babel">
+
+		const parolapiulunga = frase => (
+			frase.split(' ').reduce((accumulo, valore) => (String(valore).length > String(accumulo).length ? valore : accumulo ), '')
+		);
+
+		const input = 'Buongiorno mi chiamo Paolo';
+
+		const output = parolapiulunga( input );
+
+		document.getElementById('input').innerHTML = JSON.stringify(input);
+		document.getElementById('output').innerHTML = JSON.stringify(output);
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>MINI1.JS</title>
+	</head>
+	<body>
+		<h1>MINI1.JS</h1>
+		<div>input</div>
+		<pre id="input"></pre>
+		<div>output</div>
+		<pre id="output"></pre>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		<script type="text/babel">
+
+		const appiattisci = datiInArray => (datiInArray.reduce((accumulo, valore) => Array.isArray(valore) ? accumulo.concat(appiattisci(valore)) : accumulo.concat(valore), []));
+
+		const input = [[1, 2, [3]], 4];
+
+		const output = appiattisci( input );
+
+		document.getElementById('input').innerHTML = JSON.stringify(input);
+		document.getElementById('output').innerHTML = JSON.stringify(output);
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+.has-left-feedback,
+.has-right-feedback {
+  position: relative;
+}
+
+.has-left-feedback .form-control {
+  padding-left: 2.5rem;
+}
+
+.has-left-feedback .form-left-feedback {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+.has-right-feedback .form-control {
+  padding-right: 5rem;
+}
+
+.has-right-feedback .form-right-feedback {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 1;
+  display: block;
+  xwidth: 5rem;
+  xheight: 2.5rem;
+  xline-height: 2.5rem;
+  text-align: center;
+  xpointer-events: none;
+  xcolor: #aaa;
+  margin: 0.25rem;
+}
+
+.btn-primary.btn-search {
+  background-color: rgb(243, 165, 54);
+  border-color: rgb(214, 140, 0);
+}
+
+.btn-primary.btn-cta {
+  background-color: rgb(128, 209, 53);
+  border-color: rgb(100, 182, 0);
+}
+
+#pagina-items #progetto-items-container .card:not(:last-child),
+#pagina-stores #progetto-stores-container .card:not(:last-child) {
+  margin-bottom: 20px;
+}
