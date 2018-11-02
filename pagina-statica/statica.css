@@ -1,0 +1,52 @@
+#statica .bg {
+  background-image: url("grafica.png");
+
+  height: 800px;
+
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#statica #statica-extra #statica-extra-1 {
+  margin-top: 2.5rem;
+  font-size: 4.5rem;
+}
+
+#statica #statica-extra #statica-extra-2 {
+  margin-top: 5rem;
+  font-size: 3rem;
+}
+
+#statica #statica-extra #statica-extra-3 {
+  margin-top: 2.5rem;
+}
+
+#statica .btn-primary.btn-cta {
+  background-color: rgb(243, 165, 54);
+  border-color: rgb(214, 140, 0);
+}
+
+#statica .card-servizi-intro {
+  margin-bottom: 40px;
+}
+
+#statica .card-servizi {
+  margin-bottom: 100px;
+}
+
+#statica .card-hero-intro {
+  margin-bottom: 40px;
+}
+
+#statica .card-hero {
+  margin-bottom: 40px;
+}
+
+#statica #statica-footer {
+  margin-top: 100px;
+}
+
+#statica #statica-footer span {
+  margin-left: 20px;
+  line-height: 60px;
+}
